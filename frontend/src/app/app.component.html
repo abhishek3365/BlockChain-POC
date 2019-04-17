@@ -1,0 +1,44 @@
+<mat-toolbar color="primary">
+  <span>Soccer App</span>
+</mat-toolbar>
+
+<mat-paginator [length]="playerCount"
+              [pageSize]="10"
+              class="mat-elevation-z8"
+              (page)="onPageEvent($event)">
+</mat-paginator>
+
+<mat-progress-spinner *ngIf="showLoader" mode="indeterminate" class="spinner"></mat-progress-spinner>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Club </th>
+    <td mat-cell *matCellDef="let element"> {{element.club}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="weight">
+    <th mat-header-cell *matHeaderCellDef> Country </th>
+    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Kit No </th>
+    <td mat-cell *matCellDef="let element"> {{element.kit_no}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
